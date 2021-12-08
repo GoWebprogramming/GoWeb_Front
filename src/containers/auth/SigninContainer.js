@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Login from '../../components/auth/Login';
+import Signin from '../../components/auth/Signin';
 import { changeField, initializeForm, login } from '../../modules/auth';
 import { check } from '../../modules/user';
 import { useHistory } from 'react-router-dom';
 
-const LoginContainer = () => {
+const SigninContainer = () => {
   const history = useHistory();
   const [error, setError] = useState('');
   const dispatch = useDispatch();
@@ -51,8 +51,8 @@ const LoginContainer = () => {
     if (user) history.push('/');
   }, [user, history]);
   return (
-    <Login form={form} onChange={onChange} onSubmit={onSubmit} error={error} />
+    <Signin form={form} onChange={onChange} onSubmit={onSubmit} error={error} />
   );
 };
 
-export default LoginContainer;
+export default SigninContainer;

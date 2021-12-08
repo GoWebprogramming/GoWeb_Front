@@ -2,13 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-const Login = ({ form, onChange, onSubmit, error }) => {
+const Signin = ({ form, onChange, onSubmit, error }) => {
   return (
-    <LoginWrapper>
-      <LoginFormWrapper>
+    <SigninWrapper>
+      <SigninFormWrapper>
         <h1>로그인</h1>
         <SignupLink to='/signup'>TIM이 처음이신가요? 간편 가입하기</SignupLink>
-        <LoginForm onSubmit={onSubmit}>
+        <SigninForm onSubmit={onSubmit}>
           <InputWrapper>
             <InputName>아이디</InputName>
             <Input
@@ -30,18 +30,14 @@ const Login = ({ form, onChange, onSubmit, error }) => {
             />
           </InputWrapper>
           <Button>로그인 하기</Button>
-        </LoginForm>
-        <FindLinkWrapper>
-          <StyledLink to='/findId'>아이디 찾기</StyledLink>
-          <StyledLink to='/findPassword'>비밀번호 찾기</StyledLink>
-        </FindLinkWrapper>
+        </SigninForm>
         <div>{error && <ErrorMessage>{error}</ErrorMessage>}</div>
-      </LoginFormWrapper>
-    </LoginWrapper>
+      </SigninFormWrapper>
+    </SigninWrapper>
   );
 };
 
-const LoginWrapper = styled.div`
+const SigninWrapper = styled.div`
   height: 500px;
   width: 450px;
   padding: 50px 30px;
@@ -58,9 +54,9 @@ const LoginWrapper = styled.div`
     width: 100%;
   }
 `;
-const LoginFormWrapper = styled.div`
+const SigninFormWrapper = styled.div`
   display: grid;
-  grid-template-rows: 1fr 1fr 5fr 1fr 0.5fr 3fr;
+  grid-template-rows: 1fr 1fr 3fr 2fr;
   align-items: center;
   justify-items: center;
   height: 100%;
@@ -69,7 +65,7 @@ const LoginFormWrapper = styled.div`
     margin: 0;
   }
 `;
-const LoginForm = styled.form`
+const SigninForm = styled.form`
   display: grid;
   width: 100%;
   height: 100%;
@@ -139,4 +135,4 @@ const Input = styled.input`
   font-size: 1rem;
   line-height: 1.25rem;
 `;
-export default Login;
+export default Signin;

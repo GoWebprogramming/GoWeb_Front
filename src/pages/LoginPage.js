@@ -1,13 +1,13 @@
 import React from 'react';
-import LoginContainer from '../containers/auth/LoginContainer';
-import { LoginPageWrapper } from '../styles/PageWrapper';
+import SigninContainer from '../containers/auth/SigninContainer';
+import { SigninPageWrapper } from '../styles/PageWrapper';
 
-const LoginPage = () => {
+const SigninPage = () => {
   return (
-    <LoginPageWrapper>
-      <LoginContainer />
-    </LoginPageWrapper>
+    <SigninPageWrapper>
+      <SigninContainer />
+    </SigninPageWrapper>
   );
 };
 
-export default LoginPage;
+export default SigninPage;

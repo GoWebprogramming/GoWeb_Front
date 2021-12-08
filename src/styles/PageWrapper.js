@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 // src/pages 폴더에 있는 각 페이지에 대한 Wrapper입니다.
 
-export const LoginPageWrapper = styled.section`
+export const SigninPageWrapper = styled.section`
   position: relative;
   display: flex;
   justify-content: center;
