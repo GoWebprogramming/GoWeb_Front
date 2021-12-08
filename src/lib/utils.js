@@ -5,11 +5,12 @@ export const createRequestSaga = (type, request) => {
   const [SUCCESS, FAILURE] = [`${type}_SUCCESS`, `${type}_FAILURE`];
   return function* (action) {
     yield put(startLoading(type));
+    console.log(action.payload);
     try {
       const response = yield call(request, action.payload);
       yield put({
         type: SUCCESS,
-        payload: response,
+        payload: response.data,
       });
     } catch (e) {
       yield put({
