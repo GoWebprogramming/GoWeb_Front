@@ -32,7 +32,7 @@ export const deletePost = async (post_id) => {
 export const favoritePost = async (post_id) => {
   const response = await axios({
     method: 'post',
-    url: `/posts/favorite/`,
+    url: '/posts/favorite',
     data: { post_id },
   });
   return response.data;
@@ -50,17 +50,7 @@ export const getFavoritePost = async () => {
 export const getRecentPost = async () => {
   const response = await axios({
     method: 'get',
-    url: `/postview/recent/`,
-  });
-  return response.data;
-};
-
-// 전체 포스트 불러오기
-// 모든 게시물 보기
-export const getPostView = async () => {
-  const response = await axios({
-    method: 'get',
-    url: '/postview',
+    url: '/postview/recent',
   });
   return response.data;
 };
@@ -69,15 +59,6 @@ export const getPostView = async () => {
 export const getOnePostView = async (post_id) => {
   const response = await axios({
     method: 'get',
-  });
-  return response.data;
-};
-
-// 배너 가져오기
-export const getBanner = async () => {
-  const response = await axios({
-    method: 'get',
-    url: '/banner',
   });
   return response.data;
 };

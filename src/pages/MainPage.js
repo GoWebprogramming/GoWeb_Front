@@ -1,4 +1,5 @@
 import React from 'react';
+import BannerContainer from '../containers/BannerContainer';
 import HeaderContainer from '../containers/common/HeaderContainer';
 import MainInputContainer from '../containers/common/MaininputContainer';
 
@@ -6,7 +7,8 @@ import MainInputContainer from '../containers/common/MaininputContainer';
 const MainPage = () => {
   return (
     <>
-      <HeaderContainer />
+      {/* <HeaderContainer /> */}
+      <BannerContainer />
       <MainInputContainer />
     </>
   );
