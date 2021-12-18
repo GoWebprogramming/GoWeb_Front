@@ -73,7 +73,6 @@ const Header = ({ user, onLogout, pathname }) => {
   );
 };
 const StyledHeader = styled.header`
-  // 여기 왜 sticky??
   position: fixed;
   top: 0;
   width: 100%;

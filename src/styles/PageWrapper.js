@@ -31,3 +31,8 @@ export const SignupPageWrapper = styled.div`
     align-items: normal;
   }
 `;
+
+export const GridViewPageWrapper = styled.div`
+  min-height: 100vh;
+  height: auto;
+`;
