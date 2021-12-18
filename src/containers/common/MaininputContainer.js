@@ -43,7 +43,6 @@ const MainInputContainer = () => {
       formData.append('keyword', keyword);
       formData.append('keyword_color', keyword_color);
 
-      // console.log(formData);
       /* key 확인하기 */
       for (let key of formData.keys()) {
         console.log(key);

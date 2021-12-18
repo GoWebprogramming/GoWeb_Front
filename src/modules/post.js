@@ -11,8 +11,6 @@ const [EDIT_POST, EDIT_POST_SUCCESS, EDIT_POST_FAILURE] =
   createActionType('post/EDIT_POST');
 const [DELETE_POST, DELETE_POST_SUCCESS, DELETE_POST_FAILURE] =
   createActionType('post/DELETE_POST');
-const [POSTVIEW, POSTVIEW_SUCCESS, POSTVIEW_FAILURE] =
-  createActionType('post/POSTVIEW');
 
 const FAVOURITE_POST = 'post/FAVOURITE_POST';
 
@@ -35,7 +33,6 @@ export const createPost = createAction(CREATE_POST, (formData) => formData);
 export const editPost = createAction(EDIT_POST, (formData) => formData);
 export const deletePost = createAction(DELETE_POST, (post_id) => post_id);
 export const favoritePost = createAction(FAVOURITE_POST, (post_id) => post_id);
-export const getPostView = createAction(POSTVIEW);
 export const getPostInKeyword = createAction(
   POST_IN_KEYWORD,
   (keywordId) => keywordId
@@ -57,7 +54,6 @@ const favoritePostSaga = createRequestSaga(
   FAVOURITE_POST,
   postAPI.favoritePost
 );
-const getPostViewSaga = createRequestSaga(POSTVIEW, postAPI.getPostView);
 
 const getPostInKeywordSaga = createRequestSaga(
   POST_IN_KEYWORD,
@@ -78,7 +74,6 @@ export function* postSaga() {
   yield takeLatest(EDIT_POST, editPostSaga);
   yield takeLatest(DELETE_POST, deletePostSaga);
   yield takeLatest(FAVOURITE_POST, favoritePostSaga);
-  yield takeLatest(POSTVIEW, getPostViewSaga);
   yield takeLatest(POST_IN_KEYWORD, getPostInKeywordSaga);
   yield takeLatest(POST_IN_TAG, getPostInTagSaga);
   yield takeLatest(FILTER_POST_IN_TAG, filterPostInTagSaga);
@@ -436,10 +431,6 @@ const post = handleActions(
       deletePostSuccess: null,
       deletePostError: error,
     }),
-    [POSTVIEW_SUCCESS]: (state, { payload: posts }) => ({
-      ...state,
-      posts,
-    }),
     [POST_IN_KEYWORD_SUCCESS]: (state, { payload: postInKeyword }) => ({
       ...state,
       postInKeyword,
@@ -448,7 +439,6 @@ const post = handleActions(
       ...state,
       postInTag,
     }),
-
     //필터링 된 값들을 이미 저장된 postIntag-keyword 안에 새롭게 넣어서 리랜더링
     [FILTER_POST_IN_TAG_SUCCESS]: (state, { payload: filteredPost }) => {
       const keywordList = state.postInTag.keyword.map(
