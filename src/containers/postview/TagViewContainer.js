@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import TagView from '../../components/timview/TagView';
+import TagView from '../../components/postview/TagView';
 import { getTag } from '../../modules/tagkeyword';
 import { check } from '../../modules/user';
 
