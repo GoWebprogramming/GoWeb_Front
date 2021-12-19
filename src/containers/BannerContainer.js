@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getRecentPost, getFavoritePost } from '../api/post';
+import { getRecentPost } from '../api/post';
 import { favoritePost } from '../modules/post';
 import Banner from '../components/Banner';
 import { reloadAction } from '../modules/reload';
 
 const BannerContainer = () => {
-  const [timData, setTimData] = useState(null);
+  const [recentTimData, setRecentTimData] = useState(null);
   const reloaded = useSelector(({ reload }) => reload);
   const dispatch = useDispatch();
 
   const LogContainerfetch = async () => {
     try {
-      const data = await getRecentPost();
-      setTimData(data);
+      const response = await getRecentPost();
+      setRecentTimData(response.data);
     } catch (e) {}
   };
 
@@ -29,19 +29,14 @@ const BannerContainer = () => {
   useEffect(() => {
     if (reloaded) {
       if (reloaded.timLog === true) {
-        console.log('fsdfsdfsdfdsfds');
         LogContainerfetch();
       }
     }
   }, [reloaded]);
 
-  if (timData === null) {
-    return <>loading</>;
-  }
-
-  if (typeof timData === 'string') {
+  if (typeof recentTimData === 'string') {
     return <div>아직 데이터가 없습니다!</div>;
   }
-  return <Banner timData={timData} onFavorite={onFavorite} />;
+  return <Banner recentTimData={recentTimData} onFavorite={onFavorite} />;
 };
 export default BannerContainer;

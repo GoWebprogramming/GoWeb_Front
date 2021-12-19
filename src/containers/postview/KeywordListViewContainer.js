@@ -24,7 +24,7 @@ const KeywordContainer = ({ match }) => {
         dispatch(getPostInTag(tagId));
       }
     }
-  }, [reloaded]);
+  }, [reloaded, dispatch, tagId]);
 
   const onFilteringDate = (startDate, endDate) => {
     const startDateToISO = new Date(startDate);
@@ -36,8 +36,6 @@ const KeywordContainer = ({ match }) => {
       59,
       59
     );
-    console.log(startDateToISO, endDateToISO);
-
     dispatch(
       filterPostInTag({
         minimum_date: startDateToISO,

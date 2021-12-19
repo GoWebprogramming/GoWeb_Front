@@ -43,16 +43,6 @@ const MainInputContainer = () => {
       formData.append('keyword', keyword);
       formData.append('keyword_color', keyword_color);
 
-      /* key 확인하기 */
-      for (let key of formData.keys()) {
-        console.log(key);
-      }
-
-      /* value 확인하기 */
-      for (let value of formData.values()) {
-        console.log(value);
-      }
-
       dispatch(createPost(formData));
       dispatch(reloadAction('timLog'));
       dispatch(reloadAction(pathname.split('/')[1]));

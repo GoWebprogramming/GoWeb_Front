@@ -12,7 +12,7 @@ const Tim = ({
   onDeletePost,
   onEditPost,
 }) => {
-  const { id, content, createAt, image, isFavorite } = post;
+  const { id, content, createAt, image } = post;
 
   const slicedDate = createAt.toString().slice(0, 10);
   const [editMode, setEditMode] = useState(false);
@@ -30,7 +30,6 @@ const Tim = ({
     if (editMode === true) {
       let result = window.confirm('수정하시겠습니까?');
       if (result) {
-        console.log(post);
         const formData = new FormData();
         formData.append('file', form.image);
         formData.append('content', form.content);
@@ -40,14 +39,6 @@ const Tim = ({
         formData.append('tag_color', tagColor);
         formData.append('keyword_color', keywordColor);
 
-        for (let key of formData.keys()) {
-          console.log(key);
-        }
-
-        /* value 확인하기 */
-        for (let value of formData.values()) {
-          console.log(value);
-        }
         onEditPost(formData);
       }
       setEditMode(false);

@@ -7,7 +7,7 @@ import { GridViewPageWrapper } from '../styles/PageWrapper';
 const TagViewPage = () => {
   return (
     <GridViewPageWrapper>
-      {/* <HeaderContainer /> */}
+      <HeaderContainer />
       <TagViewContainer />
       <MainInputContainer />
     </GridViewPageWrapper>

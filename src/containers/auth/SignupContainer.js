@@ -114,12 +114,10 @@ const SignupContainer = () => {
 
   useEffect(() => {
     if (authError) {
-      console.log(authError);
       setError('회원가입에 실패하였습니다.');
       return;
     }
     if (auth) {
-      console.log('Success!');
       history.push('/');
     }
     return () => {

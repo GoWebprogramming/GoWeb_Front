@@ -18,8 +18,11 @@ const TagView = ({ user, tags }) => {
                   <KeywordItem
                     key={keyword.id}
                     keywordColor={keyword.keyword_color}
-                    to={`/keyword/${tag.id}/${keyword.id}`}
-                  >{`@ ${keyword.keyword_name}`}</KeywordItem>
+                  >
+                    <StyledLink
+                      to={`/keyword/${tag.id}/${keyword.id}`}
+                    >{`@ ${keyword.keyword_name}`}</StyledLink>
+                  </KeywordItem>
                 ))}
               </KeywordWrapper>
               <div>
@@ -58,7 +61,6 @@ const GridItem = styled.li`
   border-radius: 20px;
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2);
   background: ${({ tagColor, theme }) => {
-    console.log(tagColor);
     return tagColor !== 'undefined' ? theme.component[tagColor][3] : '#FAFCF9';
   }};
   & > header {
@@ -67,7 +69,6 @@ const GridItem = styled.li`
     justify-content: center;
     align-items: center;
     background-color: ${({ tagColor, theme }) => {
-      console.log(theme.component[tagColor]);
       return tagColor !== 'undefined'
         ? theme.component[tagColor][1]
         : '#FAFCF9';
@@ -94,13 +95,22 @@ const KeywordWrapper = styled.ul`
   padding: 0 10px;
   margin: 0;
 `;
-const KeywordItem = styled(Link)`
+const KeywordItem = styled.li`
   justify-self: center;
   list-style-type: none;
   margin: 0;
   padding: 10px;
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
+  background-color: ${({ keywordColor, theme }) => {
+    return keywordColor !== 'undefined'
+      ? theme.component[keywordColor][2]
+      : '#FAFCF9';
+  }};
+`;
+const StyledLink = styled(Link)`
+  width: 100%;
+  height: 100%;
   font-family: NanumGothic;
   font-size: 16px;
   font-style: normal;
@@ -109,14 +119,6 @@ const KeywordItem = styled(Link)`
   letter-spacing: 0em;
   text-align: left;
   text-decoration: none;
-  background-color: ${({ keywordColor, theme }) => {
-    console.log(keywordColor);
-
-    return keywordColor !== 'undefined'
-      ? theme.component[keywordColor][2]
-      : '#FAFCF9';
-  }};
   color: ${(props) => props.theme.font[1]};
 `;
-
 export default TagView;

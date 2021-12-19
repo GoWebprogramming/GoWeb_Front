@@ -110,15 +110,6 @@ const SignupLink = styled(Link)`
     transition: background-color 200ms linear;
   }
 `;
-const StyledLink = styled(Link)`
-  text-decoration: none;
-  color: gray;
-`;
-const FindLinkWrapper = styled.div`
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-`;
 const ErrorMessage = styled.span`
   color: #e70000;
 `;

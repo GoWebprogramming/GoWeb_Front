@@ -15,7 +15,7 @@ const TimViewContainer = ({ match, location }) => {
   const reloaded = useSelector(({ reload }) => reload);
 
   const dispatch = useDispatch();
-  const { tagId, keywordId } = match.params;
+  const { keywordId } = match.params;
   const {
     state: { tagName, tagColor },
   } = location;
@@ -47,7 +47,7 @@ const TimViewContainer = ({ match, location }) => {
         dispatch(getPostInKeyword(keywordId));
       }
     }
-  }, [reloaded]);
+  }, [reloaded, dispatch, keywordId]);
 
   if (postList.length === 0) return <>loading</>;
   if (postList)

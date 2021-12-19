@@ -33,12 +33,10 @@ const SigninContainer = () => {
 
   useEffect(() => {
     if (authError) {
-      console.log(authError);
       setError('다시 시도해주세요.');
       return;
     }
     if (auth) {
-      console.log('로그인 성공');
       dispatch(check());
     }
     return () => {
@@ -48,7 +46,7 @@ const SigninContainer = () => {
   }, [authError, auth, dispatch]);
 
   useEffect(() => {
-    if (user) history.push('/');
+    if (user) history.push('/main');
   }, [user, history]);
   return (
     <Signin form={form} onChange={onChange} onSubmit={onSubmit} error={error} />

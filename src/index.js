@@ -7,14 +7,13 @@ import { applyMiddleware, createStore } from 'redux';
 import rootReducer, { rootSaga } from './modules';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { Provider } from 'react-redux';
-import logger from 'redux-logger';
 import createSagaMiddleware from '@redux-saga/core';
 import { check } from './modules/user';
 
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
   rootReducer,
-  composeWithDevTools(applyMiddleware(sagaMiddleware, logger))
+  composeWithDevTools(applyMiddleware(sagaMiddleware))
 );
 
 function loadUser() {

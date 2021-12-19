@@ -6,13 +6,11 @@ import { TimPageWrapper } from '../styles/PageWrapper';
 
 const TimViewPage = () => {
   return (
-    <>
-      <TimPageWrapper>
-        {/* <HeaderContainer /> */}
-        <TimViewContainer />
-        <MainInputContainer />
-      </TimPageWrapper>
-    </>
+    <TimPageWrapper>
+      <HeaderContainer />
+      <TimViewContainer />
+      <MainInputContainer />
+    </TimPageWrapper>
   );
 };
 
