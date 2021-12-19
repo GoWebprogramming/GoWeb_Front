@@ -3,48 +3,45 @@ import styled from 'styled-components';
 import { ReactComponent as FullStar } from '../lib/assets/fullStar.svg';
 import { ReactComponent as EmptyStar } from '../lib/assets/emptyStar.svg';
 
-const Banner = ({ timData, onFavorite }) => {
+const Banner = ({ recentTimData, onFavorite }) => {
   return (
-    <StyledLogWrapper>
-      {timData.map((tim) => {
-        let {
-          id,
-          content,
-          createAt,
-          updateAt,
-          isFavorite,
-          tag_id,
-          keyword_id,
-          post_tag = { tag: '', tag_color: 'grey' },
-          post_keyword,
-          image,
-        } = tim;
-        let { tag, tag_color } = post_tag || {
-          tag: '',
-          tag_color: 'grey',
-        };
-        let { keyword_name: keyword, keyword_color } = post_keyword || {
-          keyword_name: '',
-          keyword_color: 'grey',
-        };
-        const date = createAt.toString().slice(5, 10);
+    <BannerWrapper>
+      {!recentTimData || (recentTimData.length === 0 && <p>loading...</p>)}
+      {recentTimData &&
+        recentTimData.map((tim) => {
+          let {
+            id,
+            content,
+            createAt,
+            isFavorite,
+            post_tag = { tag: '', tag_color: 'grey' },
+            post_keyword,
+          } = tim;
+          let { tag, tag_color } = post_tag || {
+            tag: '',
+            tag_color: 'grey',
+          };
+          let { keyword_name: keyword, keyword_color } = post_keyword || {
+            keyword_name: '',
+            keyword_color: 'grey',
+          };
+          const date = createAt.toString().slice(5, 10);
 
-        return (
-          <div key={id}>
-            <Tag tagColor={tag_color || 'grey'}>#{tag || ''}</Tag>
-            <Keyword keyword_color={keyword_color} keyword={keyword}></Keyword>
-            <Keyword keywordColor={keyword_color || 'grey'}>
-              @{keyword || ''}
-            </Keyword>
-            <ContentWrapper>
-              <Text>{content}</Text>
-              <Star isFavorite={isFavorite} onFavorite={onFavorite} id={id} />
-              <StyledDate>{date}</StyledDate>
-            </ContentWrapper>
-          </div>
-        );
-      })}
-    </StyledLogWrapper>
+          return (
+            <TimItem key={id}>
+              <Tag tagColor={tag_color || 'grey'}>#{tag || ''}</Tag>
+              <Keyword keywordColor={keyword_color || 'grey'}>
+                @{keyword || ''}
+              </Keyword>
+              <ContentWrapper>
+                <Text>{content}</Text>
+                <Star isFavorite={isFavorite} onFavorite={onFavorite} id={id} />
+                <StyledDate>{date}</StyledDate>
+              </ContentWrapper>
+            </TimItem>
+          );
+        })}
+    </BannerWrapper>
   );
 };
 const Star = ({ isFavorite, onFavorite, id }) => {
@@ -54,16 +51,31 @@ const Star = ({ isFavorite, onFavorite, id }) => {
     </StyledStar>
   );
 };
-const StyledLogWrapper = styled.div`
-  width: 1000px;
-  height: 48px;
+const BannerWrapper = styled.ul`
+  width: 80%;
+  min-height: 305px;
+  height: fit-content;
+  padding: 20px;
   box-sizing: border-box;
   border-radius: 10px;
-  border: 1px solid #878787;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
   background-color: #ffffff;
   font-size: 20px;
   display: flex;
-  margin-bottom: 10px;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20vh;
+`;
+const TimItem = styled.li`
+  list-style: none;
+  display: flex;
+  width: 80%;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  /* box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2); */
+  & + & {
+    margin-top: 10px;
+  }
 `;
 const Tag = styled.div`
   background-color: ${({ theme, tagColor }) =>

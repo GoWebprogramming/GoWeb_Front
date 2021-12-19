@@ -12,8 +12,6 @@ const TagViewContainer = () => {
   }));
   const reloaded = useSelector(({ reload }) => reload);
 
-  const tagItems = {};
-
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getTag());
@@ -29,7 +27,7 @@ const TagViewContainer = () => {
         dispatch(getTag());
       }
     }
-  }, [reloaded]);
+  }, [reloaded, dispatch]);
 
   return <TagView user={user} tags={tags} />;
 };

@@ -2,9 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import Tim from './Tim';
-// keyword 안에 있는 tim 나열
-// 선택한 tim 을 가장 앞에 두도록
 
+// keyword 안에 있는 tim 나열
 const TimView = ({
   user,
   postList,
@@ -17,7 +16,6 @@ const TimView = ({
 }) => {
   const scrollRef = useRef();
   const [index, setIndex] = useState(0);
-  // 스크롤값 가져와야 함.
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.children[index].scrollIntoView({
@@ -36,42 +34,38 @@ const TimView = ({
 
   if (!user || !postList) return null;
   return (
-    <>
-      <TIMViewWrapper>
-        <HeaderMargin />
-
-        <ListStatus>
-          <Mark tagColor={tagColor}>{tagName}</Mark>
-          <Mark keywordColor={keywordColor}>{keywordName}</Mark>
-        </ListStatus>
-        <PostList>
-          <TimListWrapper ref={scrollRef}>
-            {postList.map((post) => (
-              <Tim
-                key={post.id}
-                post={post}
-                tagName={tagName}
-                tagColor={tagColor}
-                keywordName={keywordName}
-                keywordColor={keywordColor}
-                onDeletePost={onDeletePost}
-                onEditPost={onEditPost}
-              />
-            ))}
-            {postList.length !== 0 && (
-              <>
-                <LeftBtn onClick={onClickLeft}>
-                  <FiChevronLeft size='25' />
-                </LeftBtn>
-                <RightBtn onClick={onClickRight}>
-                  <FiChevronRight size='25' />
-                </RightBtn>
-              </>
-            )}
-          </TimListWrapper>
-        </PostList>
-      </TIMViewWrapper>
-    </>
+    <TIMViewWrapper>
+      <ListStatus>
+        <Mark tagColor={tagColor}>{tagName}</Mark>
+        <Mark keywordColor={keywordColor}>{keywordName}</Mark>
+      </ListStatus>
+      <PostList>
+        <TimListWrapper ref={scrollRef}>
+          {postList.map((post) => (
+            <Tim
+              key={post.id}
+              post={post}
+              tagName={tagName}
+              tagColor={tagColor}
+              keywordName={keywordName}
+              keywordColor={keywordColor}
+              onDeletePost={onDeletePost}
+              onEditPost={onEditPost}
+            />
+          ))}
+          {postList.length !== 0 && (
+            <>
+              <LeftBtn onClick={onClickLeft}>
+                <FiChevronLeft size='25' />
+              </LeftBtn>
+              <RightBtn onClick={onClickRight}>
+                <FiChevronRight size='25' />
+              </RightBtn>
+            </>
+          )}
+        </TimListWrapper>
+      </PostList>
+    </TIMViewWrapper>
   );
 };
 
@@ -80,7 +74,7 @@ const TIMViewWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100vw;
-  height: calc(100vh - 60px);
+  height: 100vh;
   box-sizing: border-box;
   background-color: #ffffff;
 `;
@@ -135,9 +129,6 @@ const TimListWrapper = styled.ul`
   }
 `;
 
-const HeaderMargin = styled.div`
-  margin-top: 60px;
-`;
 const LeftBtn = styled.button`
   cursor: pointer;
   outline: 0;

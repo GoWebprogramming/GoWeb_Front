@@ -7,7 +7,7 @@ import { KeywordPageWrapper } from '../styles/PageWrapper';
 const KeywordListViewPage = () => {
   return (
     <KeywordPageWrapper>
-      {/* <HeaderContainer /> */}
+      <HeaderContainer />
       <KeywordListViewContainer />
       <MainInputContainer />
     </KeywordPageWrapper>

@@ -43,7 +43,7 @@ const Signup = ({
   return (
     <SignupWrapper>
       <SignupFormWrapper>
-        <LoginLink to='/login'>이미 회원이신가요? 로그인 하기</LoginLink>
+        <LoginLink to='/'>이미 회원이신가요? 로그인 하기</LoginLink>
         <h1>회원가입</h1>
         <SignupForm onSubmit={onSubmit}>
           <InputWrapper>

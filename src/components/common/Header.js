@@ -1,25 +1,30 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
 import styled from 'styled-components';
 import { AiOutlineUnorderedList } from 'react-icons/ai';
 import { FaHome } from 'react-icons/fa';
 import { MdAccountCircle } from 'react-icons/md';
+import { ImExit } from 'react-icons/im';
 import { useHistory } from 'react-router-dom';
-// import { exitIconSrc } from '../../lib/assets/exitIcon.js';
+import Search from './Search/Search';
 
-const Header = ({ user, onLogout, pathname }) => {
-  const [scroll, setScroll] = useState(window.scrollY);
-  const handleScroll = () => setScroll(window.scrollY);
+const Header = ({
+  user,
+  onLogout,
+  pathname,
+  isOpenned,
+  searchValue,
+  handleOpenned,
+  handleInputChange,
+  searchingData,
+  handleKeyUp,
+}) => {
   const history = useHistory();
 
-  // useEffect(() => {
-  //   window.addEventListener('scroll', handleScroll);
-  // }, []);
   return (
-    <StyledHeader scroll={scroll}>
+    <StyledHeader>
       {user ? (
         <LoginWrapper>
-          {pathname === '/' ? (
+          {pathname === '/main' ? (
             <HeaderMenuButton onClick={() => history.push('/tag')}>
               <AiOutlineUnorderedList size='30' />
             </HeaderMenuButton>
@@ -29,10 +34,17 @@ const Header = ({ user, onLogout, pathname }) => {
             </HeaderMenuButton>
           )}
           {/* 검색창 */}
-          <input />
+          <Search
+            isOpenned={isOpenned}
+            searchValue={searchValue}
+            handleOpenned={handleOpenned}
+            handleInputChange={handleInputChange}
+            searchingData={searchingData}
+            handleKeyUp={handleKeyUp}
+          />
           <NavWrapper>
             <HeaderMenuButton onClick={onLogout}>
-              {/* <Icon src={exitIconSrc} size={30} /> */}
+              <ImExit size={30} />
             </HeaderMenuButton>
             {/* <Line /> */}
             <HeaderMenuButton>
@@ -44,7 +56,7 @@ const Header = ({ user, onLogout, pathname }) => {
         <LogoutWrapper>
           <HeaderMenuButton
             onClick={() => {
-              history.push('/');
+              history.push('/main');
             }}
           >
             <h1>TIM</h1>
@@ -54,7 +66,7 @@ const Header = ({ user, onLogout, pathname }) => {
             <Line />
             <HeaderMenuButton
               onClick={() => {
-                history.push('/login');
+                history.push('/');
               }}
             >
               로그인
@@ -73,28 +85,24 @@ const Header = ({ user, onLogout, pathname }) => {
   );
 };
 const StyledHeader = styled.header`
-  position: fixed;
+  position: sticky;
   top: 0;
   width: 100%;
   height: 60px;
+  box-sizing: border-box;
   z-index: 99;
   background: white;
-  box-shadow: ${(props) => props.scroll > 20 && '0 4px 4px rgb(0, 0, 0, 0.2)'};
 `;
 const LoginWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0px;
+  gap: 10px;
   width: 100%;
   height: 100%;
   box-sizing: border-box;
 `;
 
-const SearchInput = styled.input`
-  flex-grow: 0.5;
-  height: 20px;
-`;
 const LogoutWrapper = styled.div`
   display: flex;
   justify-content: space-between;
@@ -141,13 +149,7 @@ const Line = styled.div`
   height: 20px;
   margin: 0 10px;
 `;
-const StyledLink = styled(Link)`
-  /* padding: 35px; */
-  box-sizing: border-box;
-  text-decoration: none;
-  color: #000000;
-  width: 100px;
-`;
+
 const HeaderMenuButton = styled.button`
   min-width: 100px;
   border: none;
@@ -158,18 +160,11 @@ const HeaderMenuButton = styled.button`
   display: flex;
   justify-content: center;
   word-break: keep-all;
+  border-radius: 10px;
   &:hover {
     background-color: #e4e5e8;
     transition: background-color 200ms linear;
   }
-`;
-
-const Icon = styled.div`
-  width: ${(props) => props.size || 20}px;
-  height: ${(props) => props.size || 20}px;
-  background-image: url(${(props) => props.src});
-  background-size: cover;
-  background-repeat: no-repeat;
 `;
 
 export default Header;

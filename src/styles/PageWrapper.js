@@ -1,6 +1,15 @@
 import styled from 'styled-components';
 
 // src/pages 폴더에 있는 각 페이지에 대한 Wrapper입니다.
+export const MainPageWrapper = styled.div`
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  background-color: ${(props) => props.theme.bgColor};
+`;
 
 export const SigninPageWrapper = styled.section`
   position: relative;
